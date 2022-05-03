@@ -13,11 +13,12 @@ def update():
     USERNAME = environ.get('GOOGLE_DOMAINS_USERNAME')
     PASSWORD = environ.get('GOOGLE_DOMAINS_PASSWORD')
 
-    url = f'https://{USERNAME}:{PASSWORD}@domains.google.com/nic/update?hostname={HOSTNAME}'
+    url = f'https://{USERNAME}:{PASSWORD}@domains.google.com/nic/update'
+    params = { 'hostname': HOSTNAME}
 
     try:
           
-        response = requests.post(url)
+        response = requests.post(url, params=params)
         print(response.text)
 
     except:
