@@ -5,7 +5,7 @@ from time import sleep
 
 load_dotenv()
 
-period = environ.get('GOOGLE_DOMAINS_HOSTNAME', 60 * 30)
+period = environ.get('PERIOD', 60 * 30)
 
 def update():
 
