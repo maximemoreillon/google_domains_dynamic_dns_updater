@@ -5,18 +5,15 @@ from time import sleep
 
 load_dotenv()
 
+HOSTNAME = environ.get('GOOGLE_DOMAINS_HOSTNAME')
+USERNAME = environ.get('GOOGLE_DOMAINS_USERNAME')
+PASSWORD = environ.get('GOOGLE_DOMAINS_PASSWORD')
 
-def update():
+url = f'https://{USERNAME}:{PASSWORD}@domains.google.com/nic/update'
+params = { 'hostname': HOSTNAME}
 
-    HOSTNAME = environ.get('GOOGLE_DOMAINS_HOSTNAME')
-    USERNAME = environ.get('GOOGLE_DOMAINS_USERNAME')
-    PASSWORD = environ.get('GOOGLE_DOMAINS_PASSWORD')
-
-    url = f'https://{USERNAME}:{PASSWORD}@domains.google.com/nic/update'
-    params = { 'hostname': HOSTNAME}
-
-    response = requests.post(url, params=params)
-    print(response.text)
+print(f'Updating dynamic DNS for {HOSTNAME}')
+response = requests.post(url, params=params)
+print(response.text)
 
 
-update()
