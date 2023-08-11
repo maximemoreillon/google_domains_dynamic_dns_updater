@@ -5,7 +5,7 @@ from time import sleep
 
 load_dotenv()
 
-period = 60 * 30
+period = environ.get('GOOGLE_DOMAINS_HOSTNAME', 60 * 30)
 
 def update():
 
@@ -16,16 +16,8 @@ def update():
     url = f'https://{USERNAME}:{PASSWORD}@domains.google.com/nic/update'
     params = { 'hostname': HOSTNAME}
 
-    try:
-          
-        response = requests.post(url, params=params)
-        print(response.text)
-
-    except:
-
-        print('Update failed')
+    response = requests.post(url, params=params)
+    print(response.text)
 
 
-while True:
-    update()
-    sleep(period)
+update()
