@@ -5,7 +5,6 @@ from time import sleep
 
 load_dotenv()
 
-period = environ.get('PERIOD', 60 * 30)
 
 def update():
 
